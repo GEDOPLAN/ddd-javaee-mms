@@ -1,6 +1,6 @@
 package de.gedoplan.person.attribute;
 
-import de.gedoplan.baselibs.persistence.domain.ToStringable;
+import de.gedoplan.baselibs.persistence.domain.DomainAttribute;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class FirstName extends ToStringable {
+public class FirstName extends DomainAttribute<String> {
 
   @NotNull
   @Size(min = 1)
