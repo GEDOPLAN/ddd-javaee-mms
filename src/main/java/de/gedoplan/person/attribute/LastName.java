@@ -1,6 +1,6 @@
 package de.gedoplan.person.attribute;
 
-import de.gedoplan.baselibs.persistence.entity.ToStringable;
+import de.gedoplan.baselibs.persistence.domain.ToStringable;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

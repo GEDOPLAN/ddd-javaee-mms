@@ -1,6 +1,6 @@
 package de.gedoplan.person;
 
-import de.gedoplan.baselibs.persistence.entity.GeneratedLongIdEntity;
+import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
 import de.gedoplan.person.attribute.EMail;
 import de.gedoplan.person.attribute.FirstName;
 import de.gedoplan.person.attribute.LastName;

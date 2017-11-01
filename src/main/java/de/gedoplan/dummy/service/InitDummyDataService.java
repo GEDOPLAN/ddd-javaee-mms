@@ -1,7 +1,7 @@
 package de.gedoplan.dummy.service;
 
 import de.gedoplan.dummy.entity.Dummy;
-import de.gedoplan.dummy.persistence.DummyRepository;
+import de.gedoplan.dummy.persistence.DummyJpaRepository;
 
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
 @ApplicationScoped
 public class InitDummyDataService implements Serializable {
   @Inject
-  DummyRepository currencyRepository;
+  DummyJpaRepository currencyRepository;
 
   private static Log log = LogFactory.getLog(InitDummyDataService.class);
 

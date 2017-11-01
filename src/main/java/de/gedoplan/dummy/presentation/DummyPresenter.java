@@ -2,7 +2,7 @@ package de.gedoplan.dummy.presentation;
 
 import de.gedoplan.common.service.ApplicationVersionService;
 import de.gedoplan.dummy.entity.Dummy;
-import de.gedoplan.dummy.persistence.DummyRepository;
+import de.gedoplan.dummy.persistence.DummyJpaRepository;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import lombok.Getter;
 @Model
 public class DummyPresenter {
   @Inject
-  DummyRepository dummyRepository;
+  DummyJpaRepository dummyRepository;
 
   @Getter
   private List<Dummy> dummies;
