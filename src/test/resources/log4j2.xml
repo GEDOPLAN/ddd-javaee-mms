@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout pattern="%d{ABSOLUTE} %-5p [%c] (%t) %m%n" />
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <Root level="ERROR">
+      <AppenderRef ref="STDOUT" />
+    </Root>
+
+    <Logger name="de.gedoplan" level="DEBUG"/>
+    <Logger name="org.apache.deltaspike" level="WARN"/>
+  </Loggers>
+</Configuration>
