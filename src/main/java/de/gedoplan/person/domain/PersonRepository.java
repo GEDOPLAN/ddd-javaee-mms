@@ -1,7 +1,6 @@
-package de.gedoplan.person.persistence;
+package de.gedoplan.person.domain;
 
 import de.gedoplan.baselibs.persistence.domain.DomainRepository;
-import de.gedoplan.person.Person;
 
 public interface PersonRepository extends DomainRepository<Long, Person> {
 }

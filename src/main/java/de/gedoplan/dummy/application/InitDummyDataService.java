@@ -1,7 +1,7 @@
-package de.gedoplan.dummy.service;
+package de.gedoplan.dummy.application;
 
-import de.gedoplan.dummy.entity.Dummy;
-import de.gedoplan.dummy.persistence.DummyJpaRepository;
+import de.gedoplan.dummy.domain.Dummy;
+import de.gedoplan.dummy.infrastructure.DummyJpaRepository;
 
 import java.io.Serializable;
 

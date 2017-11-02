@@ -1,4 +1,4 @@
-package de.gedoplan.person.attribute;
+package de.gedoplan.person.domain.attribute;
 
 import de.gedoplan.baselibs.persistence.domain.DomainAttribute;
 

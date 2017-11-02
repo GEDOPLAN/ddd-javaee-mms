@@ -1,10 +1,11 @@
 package de.gedoplan.person;
 
 import de.gedoplan.TestBase;
-import de.gedoplan.person.attribute.EMail;
-import de.gedoplan.person.attribute.FirstName;
-import de.gedoplan.person.attribute.LastName;
-import de.gedoplan.person.persistence.PersonRepository;
+import de.gedoplan.person.domain.Person;
+import de.gedoplan.person.domain.PersonRepository;
+import de.gedoplan.person.domain.attribute.EMail;
+import de.gedoplan.person.domain.attribute.FirstName;
+import de.gedoplan.person.domain.attribute.LastName;
 
 import javax.inject.Inject;
 

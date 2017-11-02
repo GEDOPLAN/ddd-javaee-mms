@@ -1,4 +1,4 @@
-package de.gedoplan.person.attribute;
+package de.gedoplan.person.domain.attribute;
 
 import de.gedoplan.baselibs.persistence.domain.DomainAttribute;
 
@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class LastName extends DomainAttribute<String> {
+public class FirstName extends DomainAttribute<String> {
 
   @NotNull
   @Size(min = 1)
-  @Column(name = "FIRST_NAME")
+  @Column(name = "LAST_NAME")
   private String value;
 }

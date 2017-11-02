@@ -1,13 +1,14 @@
 package de.gedoplan.dummy;
 
 import de.gedoplan.TestBase;
-import de.gedoplan.dummy.entity.Dummy;
-import de.gedoplan.dummy.persistence.DummyRepository;
+import de.gedoplan.dummy.domain.Dummy;
+import de.gedoplan.dummy.domain.DummyRepository;
 
 import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -49,4 +50,13 @@ public class DummyTest extends TestBase {
         .forEach(this.log::debug);
   }
 
+  @Test
+  @Ignore
+  public void test_03_instantiateForEver() throws Exception {
+    for (int i = 1; true; ++i) {
+      Dummy dummy = new Dummy(String.format("Dummy %03d", i));
+
+      this.log.debug("Instantiated: " + dummy);
+    }
+  }
 }

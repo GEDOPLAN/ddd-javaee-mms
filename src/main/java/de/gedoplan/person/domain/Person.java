@@ -1,9 +1,9 @@
-package de.gedoplan.person;
+package de.gedoplan.person.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
-import de.gedoplan.person.attribute.EMail;
-import de.gedoplan.person.attribute.FirstName;
-import de.gedoplan.person.attribute.LastName;
+import de.gedoplan.person.domain.attribute.EMail;
+import de.gedoplan.person.domain.attribute.FirstName;
+import de.gedoplan.person.domain.attribute.LastName;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

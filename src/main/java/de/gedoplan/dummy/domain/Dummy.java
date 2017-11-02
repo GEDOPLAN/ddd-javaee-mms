@@ -1,9 +1,6 @@
-package de.gedoplan.dummy.entity;
+package de.gedoplan.dummy.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
-import de.gedoplan.dummy.service.ApplicationScopedService;
-import de.gedoplan.dummy.service.DependentScopedService;
-import de.gedoplan.dummy.service.RequestScopedService;
 
 import javax.inject.Inject;
 import javax.persistence.Access;

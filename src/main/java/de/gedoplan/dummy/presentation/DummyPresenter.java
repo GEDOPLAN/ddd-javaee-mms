@@ -1,8 +1,8 @@
 package de.gedoplan.dummy.presentation;
 
 import de.gedoplan.common.service.ApplicationVersionService;
-import de.gedoplan.dummy.entity.Dummy;
-import de.gedoplan.dummy.persistence.DummyJpaRepository;
+import de.gedoplan.dummy.domain.Dummy;
+import de.gedoplan.dummy.infrastructure.DummyJpaRepository;
 
 import java.util.List;
 
