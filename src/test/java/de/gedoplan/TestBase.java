@@ -1,12 +1,10 @@
 package de.gedoplan;
 
+import de.gedoplan.baselibs.utils.inject.InjectionUtil;
+
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
-import javax.enterprise.inject.spi.AnnotatedType;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionTarget;
 
 import org.apache.deltaspike.cdise.api.ContextControl;
 import org.junit.After;
@@ -31,18 +29,11 @@ public abstract class TestBase {
   }
 
   @Before
-  @SuppressWarnings({ "rawtypes", "unchecked" })
   public void startRequestContextAndHandleInjectsInTestClass() {
     ContextControl contextControl = container.select(ContextControl.class).get();
     contextControl.startContext(RequestScoped.class);
 
-    BeanManager beanManager = container.getBeanManager();
-
-    CreationalContext creationalContext = beanManager.createCreationalContext(null);
-
-    AnnotatedType annotatedType = beanManager.createAnnotatedType(this.getClass());
-    InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotatedType);
-    injectionTarget.inject(this, creationalContext);
+    InjectionUtil.injectFields(this);
   }
 
   @After
