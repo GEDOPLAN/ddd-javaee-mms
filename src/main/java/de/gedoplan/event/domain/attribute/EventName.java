@@ -1,10 +1,10 @@
-package de.gedoplan.room.domain;
+package de.gedoplan.event.domain.attribute;
 
-import de.gedoplan.baselibs.persistence.domain.DomainValue;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.baselibs.persistence.domain.DomainAttribute;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,11 +19,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class RoomOccupancy extends DomainValue {
-  @NotNull
-  private ZonedInterval interval;
+public class EventName extends DomainAttribute<String> {
 
   @NotNull
   @Size(min = 1)
-  private String description;
+  @Column(name = "NAME")
+  private String value;
 }

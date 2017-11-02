@@ -1,13 +1,14 @@
-package de.gedoplan.room.domain;
+package de.gedoplan.common.domain;
 
 import de.gedoplan.baselibs.persistence.domain.DomainValue;
-import de.gedoplan.common.domain.ZonedInterval;
+
+import java.time.ZonedDateTime;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class RoomOccupancy extends DomainValue {
+public class ZonedInterval extends DomainValue {
   @NotNull
-  private ZonedInterval interval;
+  private ZonedDateTime start;
 
   @NotNull
-  @Size(min = 1)
-  private String description;
+  private ZonedDateTime end;
+
+  @AssertTrue(message = "end must not be before start")
+  private boolean isEndNotBeforeStart() {
+    return this.start == null || this.end == null || !this.end.isBefore(this.start);
+  }
 }

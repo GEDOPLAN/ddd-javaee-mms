@@ -23,6 +23,6 @@ public class RoomName extends DomainAttribute<String> {
 
   @NotNull
   @Size(min = 1)
-  @Column(name = "FIRST_NAME")
+  @Column(name = "NAME")
   private String value;
 }

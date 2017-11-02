@@ -1,6 +1,7 @@
 package de.gedoplan.room;
 
 import de.gedoplan.TestBase;
+import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.room.domain.Room;
 import de.gedoplan.room.domain.RoomOccupancy;
 import de.gedoplan.room.domain.RoomRepository;
@@ -39,11 +40,14 @@ public class RoomTest extends TestBase {
     ZoneId zoneId = ZoneId.of("Europe/Berlin");
 
     Room sydney = new Room(new RoomName("Sydney"));
-    sydney.getRoomOccupancies().add(new RoomOccupancy(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, zoneId), "Java-EE-Workshop"));
-    sydney.getRoomOccupancies().add(new RoomOccupancy(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, zoneId), "DDD mit Java EE"));
+    sydney.getRoomOccupancies()
+        .add(new RoomOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 7, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 8, 0, 0, 0, zoneId)), "Vorbereitung Workshop-Bestuhlung"));
+    sydney.getRoomOccupancies()
+        .add(new RoomOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 18, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 19, 0, 0, 0, zoneId)), "Umbau auf Theaterbestuhlung"));
 
     Room ballsaal = new Room(new RoomName("Ballsaal"));
-    ballsaal.getRoomOccupancies().add(new RoomOccupancy(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, zoneId), "Casino Night"));
+    ballsaal.getRoomOccupancies()
+        .add(new RoomOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 20, 00, 0, 0, zoneId)), "Aufstellen großer Tische"));
 
     for (Room room : new Room[] { sydney, ballsaal }) {
       this.roomRepository.persist(room);
@@ -52,4 +56,14 @@ public class RoomTest extends TestBase {
     }
   }
 
+  @Test
+  public void test_02_findAll() {
+    this.log.debug("----- test_02_findAll -----");
+
+    this.roomRepository
+        .findAll()
+        .stream()
+        .map(x -> "Found: " + x)
+        .forEach(this.log::debug);
+  }
 }
