@@ -1,7 +1,7 @@
 package de.gedoplan.common;
 
 import de.gedoplan.TestBase;
-import de.gedoplan.common.service.ApplicationVersionService;
+import de.gedoplan.common.application.ApplicationVersionService;
 
 import javax.inject.Inject;
 
