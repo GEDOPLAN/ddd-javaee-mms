@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import org.jboss.weld.exceptions.IllegalArgumentException;
-
 @ApplicationScoped
 public class MeetingFactory {
 

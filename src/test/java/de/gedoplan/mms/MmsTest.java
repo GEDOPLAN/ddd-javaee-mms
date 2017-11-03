@@ -3,6 +3,7 @@ package de.gedoplan.mms;
 import de.gedoplan.TestBase;
 import de.gedoplan.common.domain.Capacity;
 import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.meeting.application.ParticipantAppSvc;
 import de.gedoplan.meeting.domain.Meeting;
 import de.gedoplan.meeting.domain.MeetingFactory;
 import de.gedoplan.meeting.domain.MeetingRepository;
@@ -28,7 +29,17 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MmsTest extends TestBase {
+  private static final EMail DONALD_EMAIL = EMail.of("donald.duck@entenhausen.city");
+
+  private static final FirstName DONALD_FIRST_NAME = FirstName.of("Donald");
+
+  private static final LastName DUCK_LAST_NAME = LastName.of("Duck");
+
+  private static final MeetingName CASINO_NIGHT_NAME = MeetingName.of("Casino Night");
+
   private static final ZoneId ZONE_ID = ZoneId.of("Europe/Berlin");
+
+  private static final ZonedDateTime CASINO_NIGHT_START = ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID);
 
   @Inject
   PersonRepository personRepository;
@@ -40,6 +51,8 @@ public class MmsTest extends TestBase {
   MeetingFactory meetingFactory;
   @Inject
   MeetingRepository meetingRepository;
+  @Inject
+  ParticipantAppSvc participantAppSvc;
 
   @Inject
   Log log;
@@ -58,8 +71,8 @@ public class MmsTest extends TestBase {
     this.log.info("----- test_01_insertPersons -----");
 
     Person[] persons = {
-        new Person(LastName.of("Duck"), FirstName.of("Dagobert"), EMail.of("dagobert.duck@entenhausen.city")),
-        new Person(LastName.of("Duck"), FirstName.of("Donald"), EMail.of("donald.duck@entenhausen.city"))
+        new Person(DUCK_LAST_NAME, FirstName.of("Dagobert"), EMail.of("dagobert.duck@entenhausen.city")),
+        new Person(DUCK_LAST_NAME, DONALD_FIRST_NAME, DONALD_EMAIL)
     };
     for (Person person : persons) {
       this.personRepository.persist(person);
@@ -90,7 +103,7 @@ public class MmsTest extends TestBase {
     sydney.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 18, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 19, 0, 0, 0, ZONE_ID)), "Umbau auf Theaterbestuhlung");
 
     Room ballsaal = new Room(RoomName.of("Ballsaal"), Capacity.of(1000));
-    ballsaal.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID)), "Aufstellen großer Tische");
+    ballsaal.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, ZONE_ID), CASINO_NIGHT_START), "Aufstellen großer Tische");
 
     for (Room room : new Room[] { partenkirchen, sydney, ballsaal }) {
       this.roomRepository.persist(room);
@@ -126,17 +139,17 @@ public class MmsTest extends TestBase {
     this.log.info("----- test_21_insertMeetings -----");
 
     Meeting javaEeWorkshop = this.meetingFactory.create(
-        new MeetingName("Java-EE-Workshop"),
+        MeetingName.of("Java-EE-Workshop"),
         Capacity.of(50),
         ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)));
     Meeting dddMitJavaEe = this.meetingFactory.create(
-        new MeetingName("DDD mit Java EE"),
+        MeetingName.of("DDD mit Java EE"),
         Capacity.of(30),
         ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
     Meeting casinoNight = this.meetingFactory.create(
-        new MeetingName("Casino Night"),
+        CASINO_NIGHT_NAME,
         Capacity.of(500),
-        ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, ZONE_ID)));
+        ZonedInterval.of(CASINO_NIGHT_START, ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, ZONE_ID)));
 
     for (Meeting meeting : new Meeting[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {
       this.meetingRepository.persist(meeting);
@@ -154,5 +167,24 @@ public class MmsTest extends TestBase {
         .stream()
         .map(x -> "Found: " + x)
         .forEach(this.log::debug);
+  }
+
+  @Test
+  public void test_31_registerParticipants() {
+    this.log.debug("----- test_31_registerParticipants -----");
+
+    this.participantAppSvc.register(
+        LastName.of("Wacker"),
+        FirstName.of("Willi"),
+        EMail.of("willi.wacker@mail.org"),
+        CASINO_NIGHT_NAME,
+        CASINO_NIGHT_START);
+
+    this.participantAppSvc.register(
+        DUCK_LAST_NAME,
+        DONALD_FIRST_NAME,
+        DONALD_EMAIL,
+        CASINO_NIGHT_NAME,
+        CASINO_NIGHT_START);
   }
 }
