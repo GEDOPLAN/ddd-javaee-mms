@@ -1,7 +1,7 @@
 package de.gedoplan.room.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
-import de.gedoplan.common.domain.SeatCapacity;
+import de.gedoplan.common.domain.Capacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.room.domain.attribute.RoomName;
 
@@ -35,7 +35,7 @@ public class Room extends GeneratedLongIdEntity {
 
   @NotNull
   @Valid
-  private SeatCapacity capacity;
+  private Capacity capacity;
 
   @Setter(AccessLevel.NONE)
   @ElementCollection(fetch = FetchType.EAGER)
@@ -49,7 +49,7 @@ public class Room extends GeneratedLongIdEntity {
     this.occupancies.add(new RoomOccupancy(interval, description));
   }
 
-  public Room(RoomName name, SeatCapacity capacity) {
+  public Room(RoomName name, Capacity capacity) {
     this.name = name;
     this.capacity = capacity;
     this.occupancies = new HashSet<>();

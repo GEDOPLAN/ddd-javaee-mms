@@ -1,7 +1,7 @@
 package de.gedoplan.mms;
 
 import de.gedoplan.TestBase;
-import de.gedoplan.common.domain.SeatCapacity;
+import de.gedoplan.common.domain.Capacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.meeting.domain.Meeting;
 import de.gedoplan.meeting.domain.MeetingFactory;
@@ -83,13 +83,13 @@ public class MmsTest extends TestBase {
   public void test_11_insertRooms() {
     this.log.info("----- test_11_insertRooms -----");
 
-    Room partenkirchen = new Room(RoomName.of("Partenkirchen"), SeatCapacity.of(40));
+    Room partenkirchen = new Room(RoomName.of("Partenkirchen"), Capacity.of(40));
 
-    Room sydney = new Room(RoomName.of("Sydney"), SeatCapacity.of(100));
+    Room sydney = new Room(RoomName.of("Sydney"), Capacity.of(100));
     sydney.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 7, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 8, 0, 0, 0, ZONE_ID)), "Vorbereitung Workshop-Bestuhlung");
     sydney.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 18, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 19, 0, 0, 0, ZONE_ID)), "Umbau auf Theaterbestuhlung");
 
-    Room ballsaal = new Room(RoomName.of("Ballsaal"), SeatCapacity.of(1000));
+    Room ballsaal = new Room(RoomName.of("Ballsaal"), Capacity.of(1000));
     ballsaal.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID)), "Aufstellen großer Tische");
 
     for (Room room : new Room[] { partenkirchen, sydney, ballsaal }) {
@@ -115,7 +115,7 @@ public class MmsTest extends TestBase {
     this.log.debug("----- test_13_findFreeRooms -----");
 
     this.roomRepository
-        .findFree(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)), SeatCapacity.of(60))
+        .findFree(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)), Capacity.of(60))
         .stream()
         .map(x -> "Found: " + x)
         .forEach(this.log::debug);
@@ -127,15 +127,15 @@ public class MmsTest extends TestBase {
 
     Meeting javaEeWorkshop = this.meetingFactory.create(
         new MeetingName("Java-EE-Workshop"),
-        SeatCapacity.of(50),
+        Capacity.of(50),
         ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)));
     Meeting dddMitJavaEe = this.meetingFactory.create(
         new MeetingName("DDD mit Java EE"),
-        SeatCapacity.of(30),
+        Capacity.of(30),
         ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
     Meeting casinoNight = this.meetingFactory.create(
         new MeetingName("Casino Night"),
-        SeatCapacity.of(500),
+        Capacity.of(500),
         ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, ZONE_ID)));
 
     for (Meeting meeting : new Meeting[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {

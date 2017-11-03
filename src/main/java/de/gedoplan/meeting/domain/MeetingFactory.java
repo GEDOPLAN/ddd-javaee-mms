@@ -1,6 +1,6 @@
 package de.gedoplan.meeting.domain;
 
-import de.gedoplan.common.domain.SeatCapacity;
+import de.gedoplan.common.domain.Capacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.room.domain.Room;
@@ -20,7 +20,7 @@ public class MeetingFactory {
   @Inject
   RoomRepository roomRepository;
 
-  public Meeting create(MeetingName name, SeatCapacity capacity, ZonedInterval interval) {
+  public Meeting create(MeetingName name, Capacity capacity, ZonedInterval interval) {
     Meeting meeting = new Meeting(name, capacity, interval);
 
     List<Room> freeRooms = this.roomRepository.findFree(interval, capacity);

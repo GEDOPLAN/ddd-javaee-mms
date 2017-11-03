@@ -1,7 +1,7 @@
 package de.gedoplan.meeting.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
-import de.gedoplan.common.domain.SeatCapacity;
+import de.gedoplan.common.domain.Capacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.person.domain.Person;
@@ -40,7 +40,7 @@ public class Meeting extends GeneratedLongIdEntity {
 
   @NotNull
   @Valid
-  private SeatCapacity capacity;
+  private Capacity capacity;
 
   @ManyToMany
   @Setter(AccessLevel.NONE)
@@ -49,7 +49,7 @@ public class Meeting extends GeneratedLongIdEntity {
   @ManyToOne
   private Room room;
 
-  Meeting(MeetingName name, SeatCapacity capacity, ZonedInterval interval) {
+  Meeting(MeetingName name, Capacity capacity, ZonedInterval interval) {
     this.name = name;
     this.interval = interval;
     this.capacity = capacity;

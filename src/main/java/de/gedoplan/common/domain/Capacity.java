@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(staticName = "of")
-public class SeatCapacity extends DomainSingleValue<Integer> {
+public class Capacity extends DomainSingleValue<Integer> {
 
   @NotNull
   @Min(1)
