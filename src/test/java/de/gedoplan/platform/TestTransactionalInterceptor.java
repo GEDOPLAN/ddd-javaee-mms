@@ -7,11 +7,7 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.transaction.Transactional;
-
-import org.apache.commons.logging.Log;
 
 /**
  * Interceptor class for binding {@link Transactional @Transactional}.
@@ -29,35 +25,22 @@ import org.apache.commons.logging.Log;
 @Priority(Interceptor.Priority.APPLICATION + 1)
 public class TestTransactionalInterceptor implements Serializable {
   @Inject
-  EntityManager entityManager;
-
-  @Inject
-  Log log;
+  TestTransactionService transactionService;
 
   @AroundInvoke
   public Object manageTx(InvocationContext invocationContext) throws Exception {
-    EntityTransaction transaction = this.entityManager.getTransaction();
-    if (transaction.isActive()) {
+    boolean begunNewTx = this.transactionService.begin();
+    if (!begunNewTx) {
       return invocationContext.proceed();
     }
 
     try {
-      if (this.log.isTraceEnabled()) {
-        this.log.trace("TX begin");
-      }
-      transaction.begin();
       Object result = invocationContext.proceed();
-      if (this.log.isTraceEnabled()) {
-        this.log.trace("TX commit");
-      }
-      transaction.commit();
+      this.transactionService.commit();
       return result;
     } catch (Exception exception) {
       try {
-        if (this.log.isTraceEnabled()) {
-          this.log.trace("TX rollback");
-        }
-        transaction.rollback();
+        this.transactionService.rollback();
       } catch (Throwable throwable) {
       }
       throw exception;

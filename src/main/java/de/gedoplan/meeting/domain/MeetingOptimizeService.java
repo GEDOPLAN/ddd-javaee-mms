@@ -10,10 +10,8 @@ import java.time.ZonedDateTime;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 @ApplicationScoped
-@Transactional
 public class MeetingOptimizeService {
 
   @Inject

@@ -1,10 +1,12 @@
 package de.gedoplan;
 
 import de.gedoplan.baselibs.utils.inject.InjectionUtil;
+import de.gedoplan.platform.TestTransactionService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
+import javax.inject.Inject;
 
 import org.apache.deltaspike.cdise.api.ContextControl;
 import org.junit.After;
@@ -15,6 +17,9 @@ public abstract class TestBase {
 
   private static SeContainerInitializer seContainerInitializer;;
   protected static SeContainer container;
+
+  @Inject
+  TestTransactionService testTransactionService;
 
   @BeforeClass
   public static void startCdiContainer() {
@@ -34,10 +39,14 @@ public abstract class TestBase {
     contextControl.startContext(RequestScoped.class);
 
     InjectionUtil.injectFields(this);
+
+    this.testTransactionService.begin();
   }
 
   @After
   public void stopRequestContext() {
+    this.testTransactionService.commit();
+
     ContextControl contextControl = container.select(ContextControl.class).get();
     contextControl.stopContext(RequestScoped.class);
   }
