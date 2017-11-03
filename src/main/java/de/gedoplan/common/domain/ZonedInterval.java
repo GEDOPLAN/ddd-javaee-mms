@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Access(AccessType.FIELD)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 public class ZonedInterval extends DomainValue {
   @NotNull
   private ZonedDateTime start;

@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Access(AccessType.FIELD)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 public class EMail extends DomainSingleValue<String> {
 
   @NotNull

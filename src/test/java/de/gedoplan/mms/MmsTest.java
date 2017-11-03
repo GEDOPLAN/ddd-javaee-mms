@@ -58,8 +58,8 @@ public class MmsTest extends TestBase {
     this.log.info("----- test_01_insertPersons -----");
 
     Person[] persons = {
-        new Person(new LastName("Duck"), new FirstName("Dagobert"), new EMail("dagobert.duck@entenhausen.city")),
-        new Person(new LastName("Duck"), new FirstName("Donald"), new EMail("donald.duck@entenhausen.city"))
+        new Person(LastName.of("Duck"), FirstName.of("Dagobert"), EMail.of("dagobert.duck@entenhausen.city")),
+        new Person(LastName.of("Duck"), FirstName.of("Donald"), EMail.of("donald.duck@entenhausen.city"))
     };
     for (Person person : persons) {
       this.personRepository.persist(person);
@@ -83,14 +83,14 @@ public class MmsTest extends TestBase {
   public void test_11_insertRooms() {
     this.log.info("----- test_11_insertRooms -----");
 
-    Room partenkirchen = new Room(new RoomName("Partenkirchen"), new SeatCapacity(40));
+    Room partenkirchen = new Room(RoomName.of("Partenkirchen"), SeatCapacity.of(40));
 
-    Room sydney = new Room(new RoomName("Sydney"), new SeatCapacity(100));
-    sydney.addOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 7, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 8, 0, 0, 0, ZONE_ID)), "Vorbereitung Workshop-Bestuhlung");
-    sydney.addOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 18, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 19, 0, 0, 0, ZONE_ID)), "Umbau auf Theaterbestuhlung");
+    Room sydney = new Room(RoomName.of("Sydney"), SeatCapacity.of(100));
+    sydney.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 7, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 8, 0, 0, 0, ZONE_ID)), "Vorbereitung Workshop-Bestuhlung");
+    sydney.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 18, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 19, 0, 0, 0, ZONE_ID)), "Umbau auf Theaterbestuhlung");
 
-    Room ballsaal = new Room(new RoomName("Ballsaal"), new SeatCapacity(1000));
-    ballsaal.addOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID)), "Aufstellen großer Tische");
+    Room ballsaal = new Room(RoomName.of("Ballsaal"), SeatCapacity.of(1000));
+    ballsaal.addOccupancy(ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID)), "Aufstellen großer Tische");
 
     for (Room room : new Room[] { partenkirchen, sydney, ballsaal }) {
       this.roomRepository.persist(room);
@@ -115,7 +115,7 @@ public class MmsTest extends TestBase {
     this.log.debug("----- test_13_findFreeRooms -----");
 
     this.roomRepository
-        .findFree(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)), new SeatCapacity(60))
+        .findFree(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)), SeatCapacity.of(60))
         .stream()
         .map(x -> "Found: " + x)
         .forEach(this.log::debug);
@@ -127,16 +127,16 @@ public class MmsTest extends TestBase {
 
     Meeting javaEeWorkshop = this.meetingFactory.create(
         new MeetingName("Java-EE-Workshop"),
-        new SeatCapacity(50),
-        new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)));
+        SeatCapacity.of(50),
+        ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)));
     Meeting dddMitJavaEe = this.meetingFactory.create(
         new MeetingName("DDD mit Java EE"),
-        new SeatCapacity(30),
-        new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
+        SeatCapacity.of(30),
+        ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
     Meeting casinoNight = this.meetingFactory.create(
         new MeetingName("Casino Night"),
-        new SeatCapacity(500),
-        new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, ZONE_ID)));
+        SeatCapacity.of(500),
+        ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, ZONE_ID)));
 
     for (Meeting meeting : new Meeting[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {
       this.meetingRepository.persist(meeting);
