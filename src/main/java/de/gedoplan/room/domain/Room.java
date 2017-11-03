@@ -1,6 +1,7 @@
 package de.gedoplan.room.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
+import de.gedoplan.common.domain.SeatCapacity;
 import de.gedoplan.room.domain.attribute.RoomName;
 
 import java.util.HashSet;
@@ -30,13 +31,17 @@ public class Room extends GeneratedLongIdEntity {
   @Valid
   private RoomName name;
 
+  @NotNull
+  @Valid
+  private SeatCapacity capacity;
+
   @Setter(AccessLevel.NONE)
   @ElementCollection(fetch = FetchType.EAGER)
   private Set<RoomOccupancy> roomOccupancies;
 
-  public Room(RoomName name) {
+  public Room(RoomName name, SeatCapacity capacity) {
     this.name = name;
+    this.capacity = capacity;
     this.roomOccupancies = new HashSet<>();
   }
-
 }

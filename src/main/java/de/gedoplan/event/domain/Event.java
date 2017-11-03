@@ -1,6 +1,7 @@
 package de.gedoplan.event.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
+import de.gedoplan.common.domain.SeatCapacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.event.domain.attribute.EventName;
 import de.gedoplan.person.domain.Person;
@@ -37,6 +38,10 @@ public class Event extends GeneratedLongIdEntity {
   @Valid
   private ZonedInterval interval;
 
+  @NotNull
+  @Valid
+  private SeatCapacity capacity;
+
   @ManyToMany
   @Setter(AccessLevel.NONE)
   private Set<Person> participants;
@@ -44,9 +49,10 @@ public class Event extends GeneratedLongIdEntity {
   @ManyToOne
   private Room room;
 
-  public Event(EventName name, ZonedInterval interval) {
+  public Event(EventName name, SeatCapacity capacity, ZonedInterval interval) {
     this.name = name;
     this.interval = interval;
+    this.capacity = capacity;
 
     this.participants = new HashSet<>();
   }

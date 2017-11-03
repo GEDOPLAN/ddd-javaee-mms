@@ -1,4 +1,4 @@
-package de.gedoplan.person.domain.attribute;
+package de.gedoplan.common.domain;
 
 import de.gedoplan.baselibs.persistence.domain.DomainSingleValue;
 
@@ -6,8 +6,8 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class LastName extends DomainSingleValue<String> {
+public class SeatCapacity extends DomainSingleValue<Integer> {
 
   @NotNull
-  @Size(min = 1)
-  @Column(name = "FIRST_NAME")
-  private String value;
+  @Min(1)
+  @Column(name = "CAPACITY")
+  private Integer value;
 }

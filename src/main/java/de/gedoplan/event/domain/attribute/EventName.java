@@ -1,6 +1,6 @@
 package de.gedoplan.event.domain.attribute;
 
-import de.gedoplan.baselibs.persistence.domain.DomainAttribute;
+import de.gedoplan.baselibs.persistence.domain.DomainSingleValue;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class EventName extends DomainAttribute<String> {
+public class EventName extends DomainSingleValue<String> {
 
   @NotNull
   @Size(min = 1)

@@ -1,6 +1,7 @@
 package de.gedoplan.room;
 
 import de.gedoplan.TestBase;
+import de.gedoplan.common.domain.SeatCapacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.room.domain.Room;
 import de.gedoplan.room.domain.RoomOccupancy;
@@ -39,17 +40,19 @@ public class RoomTest extends TestBase {
 
     ZoneId zoneId = ZoneId.of("Europe/Berlin");
 
-    Room sydney = new Room(new RoomName("Sydney"));
+    Room partenkirchen = new Room(new RoomName("Partenkirchen"), new SeatCapacity(40));
+
+    Room sydney = new Room(new RoomName("Sydney"), new SeatCapacity(100));
     sydney.getRoomOccupancies()
         .add(new RoomOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 7, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 8, 0, 0, 0, zoneId)), "Vorbereitung Workshop-Bestuhlung"));
     sydney.getRoomOccupancies()
         .add(new RoomOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 18, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 19, 0, 0, 0, zoneId)), "Umbau auf Theaterbestuhlung"));
 
-    Room ballsaal = new Room(new RoomName("Ballsaal"));
+    Room ballsaal = new Room(new RoomName("Ballsaal"), new SeatCapacity(1000));
     ballsaal.getRoomOccupancies()
         .add(new RoomOccupancy(new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 19, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 20, 00, 0, 0, zoneId)), "Aufstellen großer Tische"));
 
-    for (Room room : new Room[] { sydney, ballsaal }) {
+    for (Room room : new Room[] { partenkirchen, sydney, ballsaal }) {
       this.roomRepository.persist(room);
 
       this.log.debug("Persist: " + room);

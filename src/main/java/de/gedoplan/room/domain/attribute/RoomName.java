@@ -1,6 +1,6 @@
 package de.gedoplan.room.domain.attribute;
 
-import de.gedoplan.baselibs.persistence.domain.DomainAttribute;
+import de.gedoplan.baselibs.persistence.domain.DomainSingleValue;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class RoomName extends DomainAttribute<String> {
+public class RoomName extends DomainSingleValue<String> {
 
   @NotNull
   @Size(min = 1)

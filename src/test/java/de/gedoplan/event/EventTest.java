@@ -1,6 +1,7 @@
 package de.gedoplan.event;
 
 import de.gedoplan.TestBase;
+import de.gedoplan.common.domain.SeatCapacity;
 import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.event.domain.Event;
 import de.gedoplan.event.domain.EventRepository;
@@ -38,9 +39,12 @@ public class EventTest extends TestBase {
 
     ZoneId zoneId = ZoneId.of("Europe/Berlin");
 
-    Event javaEeWorkshop = new Event(new EventName("Java-EE-Workshop"), new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, zoneId)));
-    Event dddMitJavaEe = new Event(new EventName("DDD mit Java EE"), new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, zoneId)));
-    Event casinoNight = new Event(new EventName("Casino Night"), new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, zoneId)));
+    Event javaEeWorkshop = new Event(new EventName("Java-EE-Workshop"), new SeatCapacity(50),
+        new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, zoneId)));
+    Event dddMitJavaEe = new Event(new EventName("DDD mit Java EE"), new SeatCapacity(30),
+        new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, zoneId)));
+    Event casinoNight = new Event(new EventName("Casino Night"), new SeatCapacity(500),
+        new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, zoneId)));
 
     for (Event event : new Event[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {
       this.eventRepository.persist(event);
