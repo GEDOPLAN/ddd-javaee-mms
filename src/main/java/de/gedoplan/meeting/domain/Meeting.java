@@ -6,7 +6,6 @@ import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.person.domain.Person;
 import de.gedoplan.room.domain.Room;
-import de.gedoplan.room.domain.RoomOccupancy;
 import de.gedoplan.room.domain.RoomRepository;
 
 import java.util.HashSet;
@@ -75,8 +74,7 @@ public class Meeting extends GeneratedLongIdEntity {
 
     this.room = freeRooms.stream().collect(Collectors.minBy((Room r1, Room r2) -> r1.getCapacity().compareTo(r2.getCapacity()))).get();
 
-    // TODO: Änderung in Room OK?
-    this.room.getOccupancies().add(new RoomOccupancy(this.interval, name.getValue()));
+    this.room.addOccupancy(this.interval, name.getValue());
   }
 
 }
