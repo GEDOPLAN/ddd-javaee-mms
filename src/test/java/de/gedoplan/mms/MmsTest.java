@@ -29,6 +29,8 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MmsTest extends TestBase {
+  private static final MeetingName DDD_NAME = MeetingName.of("DDD mit Java EE");
+
   private static final EMail DONALD_EMAIL = EMail.of("donald.duck@entenhausen.city");
 
   private static final FirstName DONALD_FIRST_NAME = FirstName.of("Donald");
@@ -38,6 +40,8 @@ public class MmsTest extends TestBase {
   private static final MeetingName CASINO_NIGHT_NAME = MeetingName.of("Casino Night");
 
   private static final ZoneId ZONE_ID = ZoneId.of("Europe/Berlin");
+
+  private static final ZonedDateTime DDD_START = ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, ZONE_ID);
 
   private static final ZonedDateTime CASINO_NIGHT_START = ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, ZONE_ID);
 
@@ -140,18 +144,22 @@ public class MmsTest extends TestBase {
 
     Meeting javaEeWorkshop = this.meetingFactory.create(
         MeetingName.of("Java-EE-Workshop"),
-        Capacity.of(50),
+        Capacity.of(40),
         ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)));
     Meeting dddMitJavaEe = this.meetingFactory.create(
-        MeetingName.of("DDD mit Java EE"),
+        DDD_NAME,
         Capacity.of(30),
-        ZonedInterval.of(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
+        ZonedInterval.of(DDD_START, ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
+    Meeting fortran = this.meetingFactory.create(
+        MeetingName.of("FORTRAN in der Historie"),
+        Capacity.of(10),
+        ZonedInterval.of(DDD_START, ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, ZONE_ID)));
     Meeting casinoNight = this.meetingFactory.create(
         CASINO_NIGHT_NAME,
         Capacity.of(500),
         ZonedInterval.of(CASINO_NIGHT_START, ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, ZONE_ID)));
 
-    for (Meeting meeting : new Meeting[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {
+    for (Meeting meeting : new Meeting[] { javaEeWorkshop, dddMitJavaEe, fortran, casinoNight }) {
       this.meetingRepository.persist(meeting);
 
       this.log.debug("Persist: " + meeting);
@@ -177,14 +185,14 @@ public class MmsTest extends TestBase {
         LastName.of("Wacker"),
         FirstName.of("Willi"),
         EMail.of("willi.wacker@mail.org"),
-        CASINO_NIGHT_NAME,
-        CASINO_NIGHT_START);
+        DDD_NAME,
+        DDD_START);
 
     this.participantAppSvc.register(
         DUCK_LAST_NAME,
         DONALD_FIRST_NAME,
         DONALD_EMAIL,
-        CASINO_NIGHT_NAME,
-        CASINO_NIGHT_START);
+        DDD_NAME,
+        DDD_START);
   }
 }
