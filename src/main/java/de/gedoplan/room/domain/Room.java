@@ -37,11 +37,11 @@ public class Room extends GeneratedLongIdEntity {
 
   @Setter(AccessLevel.NONE)
   @ElementCollection(fetch = FetchType.EAGER)
-  private Set<RoomOccupancy> roomOccupancies;
+  private Set<RoomOccupancy> occupancies;
 
   public Room(RoomName name, SeatCapacity capacity) {
     this.name = name;
     this.capacity = capacity;
-    this.roomOccupancies = new HashSet<>();
+    this.occupancies = new HashSet<>();
   }
 }

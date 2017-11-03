@@ -13,6 +13,10 @@
     </Root>
 
     <Logger name="de.gedoplan" level="DEBUG"/>
+    
     <Logger name="org.apache.deltaspike" level="WARN"/>
+    
+<!--     <Logger name="org.hibernate.SQL" level="TRACE"/> -->
+<!--     <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/> -->
   </Loggers>
 </Configuration>
