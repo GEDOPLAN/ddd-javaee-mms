@@ -30,10 +30,6 @@ public class Dummy extends GeneratedLongIdEntity {
   @Transient
   RequestScopedService requestScopedService;
 
-  @Inject
-  @Transient
-  DependentScopedService dependentScopedService;
-
   public Dummy(String name) {
     this.name = name;
   }
@@ -43,7 +39,7 @@ public class Dummy extends GeneratedLongIdEntity {
 
   @Override
   public String toString() {
-    return super.toString() + " D#" + this.dependentScopedService.getInstanceNumber() + " R#" + this.requestScopedService.getInstanceNumber() + " A#"
+    return super.toString() + " R#" + this.requestScopedService.getInstanceNumber() + " A#"
         + this.applicationScopedService.getInstanceCreated();
   }
 
