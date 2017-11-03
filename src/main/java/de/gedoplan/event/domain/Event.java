@@ -9,7 +9,6 @@ import de.gedoplan.room.domain.Room;
 import de.gedoplan.room.domain.RoomOccupancy;
 import de.gedoplan.room.domain.RoomRepository;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -72,15 +71,9 @@ public class Event extends GeneratedLongIdEntity {
     this.interval = interval;
     this.capacity = capacity;
 
-    Comparator<Room> rc = new Comparator<Room>() {
-      @Override
-      public int compare(Room r1, Room r2) {
-        return r1.getCapacity().compareTo(r2.getCapacity());
-      }
-    };
-    this.room = freeRooms.stream().collect(Collectors.minBy(rc)).get();
-
     this.participants = new HashSet<>();
+
+    this.room = freeRooms.stream().collect(Collectors.minBy((Room r1, Room r2) -> r1.getCapacity().compareTo(r2.getCapacity()))).get();
 
     // TODO: Änderung in Room OK?
     this.room.getOccupancies().add(new RoomOccupancy(this.interval, name.getValue()));
