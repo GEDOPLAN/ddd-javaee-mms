@@ -49,9 +49,14 @@ public class Room extends GeneratedLongIdEntity {
     this.occupancies.add(new RoomOccupancy(interval, description));
   }
 
+  public void removeOccupancy(ZonedInterval interval) {
+    this.occupancies.removeIf(r -> r.getInterval().equals(interval));
+  }
+
   public Room(RoomName name, Capacity capacity) {
     this.name = name;
     this.capacity = capacity;
     this.occupancies = new HashSet<>();
   }
+
 }

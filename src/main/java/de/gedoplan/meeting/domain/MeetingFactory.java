@@ -27,9 +27,7 @@ public class MeetingFactory {
     }
 
     Room room = freeRooms.stream().collect(Collectors.minBy((Room r1, Room r2) -> r1.getCapacity().compareTo(r2.getCapacity()))).get();
-    meeting.setRoom(room);
-
-    room.addOccupancy(interval, name.getValue());
+    meeting.changeRoom(room);
 
     return meeting;
   }

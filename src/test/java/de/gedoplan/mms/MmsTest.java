@@ -6,6 +6,7 @@ import de.gedoplan.common.domain.ZonedInterval;
 import de.gedoplan.meeting.application.ParticipantAppSvc;
 import de.gedoplan.meeting.domain.Meeting;
 import de.gedoplan.meeting.domain.MeetingFactory;
+import de.gedoplan.meeting.domain.MeetingOptimizeService;
 import de.gedoplan.meeting.domain.MeetingRepository;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.person.domain.Person;
@@ -194,5 +195,15 @@ public class MmsTest extends TestBase {
         DONALD_EMAIL,
         DDD_NAME,
         DDD_START);
+  }
+
+  @Inject
+  MeetingOptimizeService meetingOptimizeService;
+
+  @Test
+  public void test_41_optimizeRoomAssignments() {
+    this.log.debug("----- test_41_optimizeRoomAssignments -----");
+
+    this.meetingOptimizeService.optimizeRoomAssignments();
   }
 }

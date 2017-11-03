@@ -53,6 +53,7 @@ public class Meeting extends GeneratedLongIdEntity {
   private Set<Person> participants;
 
   @ManyToOne
+  @Setter(AccessLevel.NONE)
   private Room room;
 
   Meeting(MeetingName name, Capacity capacity, ZonedInterval interval) {
@@ -75,6 +76,23 @@ public class Meeting extends GeneratedLongIdEntity {
     }
 
     this.participants.add(person);
+  }
+
+  public void changeRoom(Room room) {
+
+    if (this.room != null) {
+      if (room != null && this.room.equals(room)) {
+        return;
+      }
+
+      this.room.removeOccupancy(this.interval);
+    }
+
+    this.room = room;
+
+    if (this.room != null) {
+      this.room.addOccupancy(this.interval, this.name.getValue());
+    }
   }
 
 }
