@@ -1,9 +1,9 @@
-package de.gedoplan.event.domain;
+package de.gedoplan.meeting.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
 import de.gedoplan.common.domain.SeatCapacity;
 import de.gedoplan.common.domain.ZonedInterval;
-import de.gedoplan.event.domain.attribute.EventName;
+import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.person.domain.Person;
 import de.gedoplan.room.domain.Room;
 import de.gedoplan.room.domain.RoomOccupancy;
@@ -36,11 +36,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Event extends GeneratedLongIdEntity {
+public class Meeting extends GeneratedLongIdEntity {
 
   @NotNull
   @Valid
-  private EventName name;
+  private MeetingName name;
 
   @NotNull
   @Valid
@@ -61,7 +61,7 @@ public class Event extends GeneratedLongIdEntity {
   @Transient
   RoomRepository roomRepository;
 
-  public Event(EventName name, SeatCapacity capacity, ZonedInterval interval) {
+  public Meeting(MeetingName name, SeatCapacity capacity, ZonedInterval interval) {
     List<Room> freeRooms = this.roomRepository.findFree(interval, capacity);
     if (freeRooms.isEmpty()) {
       throw new IllegalArgumentException("No room available");

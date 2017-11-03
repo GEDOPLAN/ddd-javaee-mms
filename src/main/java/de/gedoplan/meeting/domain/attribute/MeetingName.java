@@ -1,4 +1,4 @@
-package de.gedoplan.event.domain.attribute;
+package de.gedoplan.meeting.domain.attribute;
 
 import de.gedoplan.baselibs.persistence.domain.DomainSingleValue;
 
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class EventName extends DomainSingleValue<String> {
+public class MeetingName extends DomainSingleValue<String> {
 
   @NotNull
   @Size(min = 1)

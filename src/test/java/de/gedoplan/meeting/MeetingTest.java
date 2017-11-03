@@ -1,11 +1,11 @@
-package de.gedoplan.event;
+package de.gedoplan.meeting;
 
 import de.gedoplan.TestBase;
 import de.gedoplan.common.domain.SeatCapacity;
 import de.gedoplan.common.domain.ZonedInterval;
-import de.gedoplan.event.domain.Event;
-import de.gedoplan.event.domain.EventRepository;
-import de.gedoplan.event.domain.attribute.EventName;
+import de.gedoplan.meeting.domain.Meeting;
+import de.gedoplan.meeting.domain.MeetingRepository;
+import de.gedoplan.meeting.domain.attribute.MeetingName;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -18,10 +18,10 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class EventTest extends TestBase {
+public class MeetingTest extends TestBase {
 
   @Inject
-  EventRepository eventRepository;
+  MeetingRepository meetingRepository;
 
   @Inject
   Log log;
@@ -30,7 +30,7 @@ public class EventTest extends TestBase {
   public void test_00_clearData() {
     this.log.info("----- test_00_clearData -----");
 
-    this.eventRepository.removeAll();
+    this.meetingRepository.removeAll();
   }
 
   @Test
@@ -39,17 +39,17 @@ public class EventTest extends TestBase {
 
     ZoneId zoneId = ZoneId.of("Europe/Berlin");
 
-    Event javaEeWorkshop = new Event(new EventName("Java-EE-Workshop"), new SeatCapacity(50),
+    Meeting javaEeWorkshop = new Meeting(new MeetingName("Java-EE-Workshop"), new SeatCapacity(50),
         new ZonedInterval(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, zoneId)));
-    Event dddMitJavaEe = new Event(new EventName("DDD mit Java EE"), new SeatCapacity(30),
+    Meeting dddMitJavaEe = new Meeting(new MeetingName("DDD mit Java EE"), new SeatCapacity(30),
         new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 15, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 16, 0, 0, 0, zoneId)));
-    Event casinoNight = new Event(new EventName("Casino Night"), new SeatCapacity(500),
+    Meeting casinoNight = new Meeting(new MeetingName("Casino Night"), new SeatCapacity(500),
         new ZonedInterval(ZonedDateTime.of(2017, 11, 7, 20, 0, 0, 0, zoneId), ZonedDateTime.of(2017, 11, 7, 21, 30, 0, 0, zoneId)));
 
-    for (Event event : new Event[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {
-      this.eventRepository.persist(event);
+    for (Meeting meeting : new Meeting[] { javaEeWorkshop, dddMitJavaEe, casinoNight }) {
+      this.meetingRepository.persist(meeting);
 
-      this.log.debug("Persist: " + event);
+      this.log.debug("Persist: " + meeting);
     }
   }
 
@@ -57,7 +57,7 @@ public class EventTest extends TestBase {
   public void test_02_findAll() {
     this.log.debug("----- test_02_findAll -----");
 
-    this.eventRepository
+    this.meetingRepository
         .findAll()
         .stream()
         .map(x -> "Found: " + x)
