@@ -1,7 +1,7 @@
 package de.gedoplan.dummy.application;
 
 import de.gedoplan.dummy.domain.Dummy;
-import de.gedoplan.dummy.infrastructure.DummyJpaRepository;
+import de.gedoplan.dummy.domain.DummyRepository;
 
 import java.io.Serializable;
 
@@ -18,16 +18,16 @@ import org.apache.commons.logging.LogFactory;
 @ApplicationScoped
 public class InitDummyDataService implements Serializable {
   @Inject
-  DummyJpaRepository currencyRepository;
+  DummyRepository dummyRepository;
 
   private static Log log = LogFactory.getLog(InitDummyDataService.class);
 
   @Transactional
   void createDemoData(@Observes @Initialized(ApplicationScoped.class) ServletContext event) {
     try {
-      if (this.currencyRepository.countAll() == 0) {
+      if (this.dummyRepository.countAll() == 0) {
         for (int i = 1; i <= 10; ++i) {
-          this.currencyRepository.merge(new Dummy(String.format("Dummy %03d", i)));
+          this.dummyRepository.merge(new Dummy(String.format("Dummy %03d", i)));
         }
       }
     } catch (Exception e) {

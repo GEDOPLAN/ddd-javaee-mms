@@ -1,6 +1,8 @@
 package de.gedoplan.person.domain;
 
-import de.gedoplan.baselibs.persistence.domain.DomainRepository;
+import de.gedoplan.baselibs.persistence.domain.Repository;
+import de.gedoplan.baselibs.persistence.domain.impl.JpaRepository;
 
-public interface PersonRepository extends DomainRepository<Long, Person> {
+@Repository
+public class PersonRepository extends JpaRepository<Long, Person> {
 }

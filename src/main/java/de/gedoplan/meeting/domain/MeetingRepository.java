@@ -1,6 +1,8 @@
 package de.gedoplan.meeting.domain;
 
-import de.gedoplan.baselibs.persistence.domain.DomainRepository;
+import de.gedoplan.baselibs.persistence.domain.Repository;
+import de.gedoplan.baselibs.persistence.domain.impl.JpaRepository;
 
-public interface MeetingRepository extends DomainRepository<Long, Meeting> {
+@Repository
+public class MeetingRepository extends JpaRepository<Long, Meeting> {
 }
