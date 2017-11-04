@@ -27,6 +27,7 @@
       <!-- Logging level -->
       <!-- EclipseLink: FINE logs SQL commands -->
       <property name="eclipselink.logging.level" value="OFF" />
+      <property name="eclipselink.logging.logger" value="JavaLogger" />
       <!-- Hibernate: For SQL logging set the log categories org.hibernate.SQL und org.hibernate.type.descriptor.sql.BasicBinder to TRACE -->
 
       <!-- Spezielle Einstellungen fuer EclipseLink -->

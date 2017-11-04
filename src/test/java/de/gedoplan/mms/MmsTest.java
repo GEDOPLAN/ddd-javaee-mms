@@ -133,7 +133,7 @@ public class MmsTest extends TestBase {
     this.log.debug("----- test_13_findFreeRooms -----");
 
     this.roomRepository
-        .findFree(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 9, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID)), Capacity.of(60))
+        .findFree(ZonedInterval.of(ZonedDateTime.of(2017, 11, 6, 17, 0, 0, 0, ZONE_ID), ZonedDateTime.of(2017, 11, 6, 17, 10, 0, 0, ZONE_ID)), Capacity.of(60))
         .stream()
         .map(x -> "Found: " + x)
         .forEach(this.log::debug);
