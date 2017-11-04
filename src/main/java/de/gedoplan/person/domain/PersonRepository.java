@@ -1,13 +1,19 @@
 package de.gedoplan.person.domain;
 
-import de.gedoplan.baselibs.persistence.domain.Repository;
 import de.gedoplan.baselibs.persistence.domain.impl.JpaRepository;
 import de.gedoplan.person.domain.attribute.EMail;
 
-@Repository
+import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
+
+@ApplicationScoped
+@Transactional(rollbackOn = Exception.class)
 public class PersonRepository extends JpaRepository<Long, Person> {
 
   public Person findByEMail(EMail eMail) {
-    return findSingleByProperty(Person_.email, eMail);
+    return findSingle(
+        this.entityManager.createQuery(
+            "select p from Person p where p.email=?1", Person.class)
+            .setParameter(1, eMail));
   }
 }

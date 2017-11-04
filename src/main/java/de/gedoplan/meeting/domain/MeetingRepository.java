@@ -1,14 +1,16 @@
 package de.gedoplan.meeting.domain;
 
-import de.gedoplan.baselibs.persistence.domain.Repository;
 import de.gedoplan.baselibs.persistence.domain.impl.JpaRepository;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 
 import java.time.ZonedDateTime;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
-@Repository
+@ApplicationScoped
+@Transactional(rollbackOn = Exception.class)
 public class MeetingRepository extends JpaRepository<Long, Meeting> {
 
   public Meeting findByNameAndStart(MeetingName meetingName, ZonedDateTime start) {

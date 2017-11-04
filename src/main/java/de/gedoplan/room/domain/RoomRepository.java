@@ -1,13 +1,16 @@
 package de.gedoplan.room.domain;
 
-import de.gedoplan.baselibs.persistence.domain.Repository;
 import de.gedoplan.baselibs.persistence.domain.impl.JpaRepository;
 import de.gedoplan.common.domain.Capacity;
 import de.gedoplan.common.domain.ZonedInterval;
 
 import java.util.List;
 
-@Repository
+import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
+
+@ApplicationScoped
+@Transactional(rollbackOn = Exception.class)
 public class RoomRepository extends JpaRepository<Long, Room> {
 
   public List<Room> findFree(ZonedInterval interval, Capacity capacity) {
