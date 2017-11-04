@@ -201,9 +201,12 @@ public class MmsTest extends TestBase {
   MeetingOptimizeService meetingOptimizeService;
 
   @Test
-  public void test_41_optimizeRoomAssignments() {
+  public void test_41_optimizeRoomAssignments() throws InterruptedException {
     this.log.debug("----- test_41_optimizeRoomAssignments -----");
 
     this.meetingOptimizeService.optimizeRoomAssignments();
+
+    // Give async tasks some time ...
+    Thread.sleep(1000);
   }
 }
