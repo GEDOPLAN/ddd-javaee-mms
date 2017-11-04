@@ -1,4 +1,4 @@
-package de.gedoplan.dummy.presentation;
+package de.gedoplan.dummy.adapter;
 
 import de.gedoplan.common.application.ApplicationVersionService;
 import de.gedoplan.dummy.domain.Dummy;
