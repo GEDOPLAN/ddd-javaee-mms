@@ -10,6 +10,7 @@ public class EventService {
   Event<Object> eventSource;
 
   public void fire(Object event) {
+    this.eventSource.fireAsync(event);
     this.eventSource.fire(event);
   }
 }
