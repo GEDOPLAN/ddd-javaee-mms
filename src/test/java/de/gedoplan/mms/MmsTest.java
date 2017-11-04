@@ -1,8 +1,8 @@
 package de.gedoplan.mms;
 
 import de.gedoplan.TestBase;
-import de.gedoplan.common.domain.Capacity;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.common.domain.attribute.Capacity;
+import de.gedoplan.common.domain.attribute.ZonedInterval;
 import de.gedoplan.meeting.application.ParticipantAppSvc;
 import de.gedoplan.meeting.domain.Meeting;
 import de.gedoplan.meeting.domain.MeetingFactory;

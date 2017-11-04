@@ -1,8 +1,8 @@
 package de.gedoplan.room.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
-import de.gedoplan.common.domain.Capacity;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.common.domain.attribute.Capacity;
+import de.gedoplan.common.domain.attribute.ZonedInterval;
 import de.gedoplan.room.domain.attribute.RoomName;
 
 import java.util.Collections;

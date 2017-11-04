@@ -1,4 +1,4 @@
-package de.gedoplan.meeting.adapter;
+package de.gedoplan.meeting.infrastructure;
 
 import de.gedoplan.meeting.domain.Meeting;
 import de.gedoplan.meeting.event.RoomChangedEvent;

@@ -1,8 +1,8 @@
 package de.gedoplan.room.domain;
 
 import de.gedoplan.baselibs.persistence.domain.impl.JpaRepository;
-import de.gedoplan.common.domain.Capacity;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.common.domain.attribute.Capacity;
+import de.gedoplan.common.domain.attribute.ZonedInterval;
 
 import java.util.List;
 

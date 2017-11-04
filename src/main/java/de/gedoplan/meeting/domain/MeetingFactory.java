@@ -1,7 +1,7 @@
 package de.gedoplan.meeting.domain;
 
-import de.gedoplan.common.domain.Capacity;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.common.domain.attribute.Capacity;
+import de.gedoplan.common.domain.attribute.ZonedInterval;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.room.domain.Room;
 import de.gedoplan.room.domain.RoomRepository;

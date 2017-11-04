@@ -1,7 +1,7 @@
 package de.gedoplan.room.domain;
 
 import de.gedoplan.baselibs.persistence.domain.DomainValue;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.common.domain.attribute.ZonedInterval;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

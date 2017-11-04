@@ -1,8 +1,8 @@
 package de.gedoplan.meeting.domain;
 
 import de.gedoplan.baselibs.persistence.domain.GeneratedLongIdEntity;
-import de.gedoplan.common.domain.Capacity;
-import de.gedoplan.common.domain.ZonedInterval;
+import de.gedoplan.common.domain.attribute.Capacity;
+import de.gedoplan.common.domain.attribute.ZonedInterval;
 import de.gedoplan.meeting.domain.attribute.MeetingName;
 import de.gedoplan.person.domain.Person;
 import de.gedoplan.person.domain.PersonRepository;

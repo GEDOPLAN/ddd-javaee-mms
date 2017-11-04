@@ -1,4 +1,4 @@
-package de.gedoplan.common.domain;
+package de.gedoplan.common.domain.attribute;
 
 import de.gedoplan.baselibs.persistence.domain.DomainValue;
 
