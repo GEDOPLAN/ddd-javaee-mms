@@ -10,6 +10,11 @@ import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 
+/**
+ * Demo application scoped service logging its life cycle.
+ * 
+ * @author dw
+ */
 @ApplicationScoped
 public class ApplicationScopedService {
   private String instanceCreated;

@@ -4,6 +4,11 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
+/**
+ * General domain event firing service.
+ *
+ * @author dw
+ */
 @ApplicationScoped
 public class EventService {
   @Inject

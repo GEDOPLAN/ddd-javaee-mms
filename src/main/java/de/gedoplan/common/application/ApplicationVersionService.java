@@ -7,10 +7,14 @@ import javax.enterprise.context.ApplicationScoped;
 
 import lombok.Getter;
 
+/**
+ * Service supplying (Maven) project coordinates.
+ * 
+ * @author dw
+ */
 @ApplicationScoped
 @Getter
-public class ApplicationVersionService
-{
+public class ApplicationVersionService {
   private String groupId;
   private String artifactId;
   private String version;
@@ -19,8 +23,7 @@ public class ApplicationVersionService
   private String gav;
 
   @PostConstruct
-  void postConstruct()
-  {
+  void postConstruct() {
     this.groupId = ApplicationProperties.getProperty("project.groupId");
     this.artifactId = ApplicationProperties.getProperty("project.artifactId");
     this.version = ApplicationProperties.getProperty("project.version");

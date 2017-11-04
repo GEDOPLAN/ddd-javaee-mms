@@ -14,6 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Domain value/attribute for a last name.
+ *
+ * @author dw
+ */
 @Embeddable
 @Access(AccessType.FIELD)
 @Getter

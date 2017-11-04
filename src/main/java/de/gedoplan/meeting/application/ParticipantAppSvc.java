@@ -15,6 +15,11 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 
+/**
+ * Application service for participants.
+ *
+ * @author dw
+ */
 @ApplicationScoped
 @Transactional(rollbackOn = Exception.class)
 public class ParticipantAppSvc {

@@ -12,6 +12,11 @@ import javax.inject.Inject;
 
 import lombok.Getter;
 
+/**
+ * Adapter for JSF (=managed bean).
+ *
+ * @author dw
+ */
 @Model
 public class DummyPresenter {
   @Inject

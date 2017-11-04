@@ -14,6 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Domain value for room occupancies.
+ *
+ * @author dw
+ */
 @Embeddable
 @Access(AccessType.FIELD)
 @Getter
@@ -23,6 +28,7 @@ public class RoomOccupancy extends DomainValue {
   @NotNull
   private ZonedInterval interval;
 
+  // In a full blown model, this would be a specialized attribute type instead of String.
   @NotNull
   @Size(min = 1)
   private String description;

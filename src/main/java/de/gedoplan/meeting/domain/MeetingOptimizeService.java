@@ -11,6 +11,16 @@ import java.time.ZonedDateTime;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+/**
+ * (Fake) Meeting optimization service.
+ *
+ * This service reassigns rooms to meetings in a way, that meetings take place in rooms with best matching sizes.
+ *
+ * In this fake implementation, two fixed coded meetings swap their rooms. In reality a "Find best matches" algorithm would
+ * be used (e. g. Kuhn/Mankres) to optimize for a "good" room capacity utilization.
+ *
+ * @author dw
+ */
 @ApplicationScoped
 public class MeetingOptimizeService {
 

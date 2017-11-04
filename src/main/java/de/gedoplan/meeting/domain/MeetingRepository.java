@@ -8,9 +8,15 @@ import java.time.ZonedDateTime;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
+/**
+ * (JPA) Repository for {@link Meeting}.
+ *
+ * @author dw
+ */
 @ApplicationScoped
-@Transactional(rollbackOn = Exception.class)
+@Transactional(value = TxType.MANDATORY)
 public class MeetingRepository extends JpaRepository<Long, Meeting> {
 
   public Meeting findByNameAndStart(MeetingName meetingName, ZonedDateTime start) {

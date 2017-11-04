@@ -1,0 +1,1 @@
+Mock objects for platform services used (entity manager producer, transaction handling)

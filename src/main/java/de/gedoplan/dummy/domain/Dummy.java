@@ -13,6 +13,11 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Dummy entity showing service injections.
+ *
+ * @author dw
+ */
 @Entity
 @Access(AccessType.FIELD)
 @Getter

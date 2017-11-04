@@ -29,6 +29,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Domain entity for meetings.
+ * 
+ * @author dw
+ */
 @Entity
 @Access(AccessType.FIELD)
 @Getter
@@ -56,6 +61,23 @@ public class Meeting extends GeneratedLongIdEntity {
   @Setter(AccessLevel.NONE)
   private Room room;
 
+  public void changeRoom(Room room) {
+
+    if (this.room != null) {
+      if (room != null && this.room.equals(room)) {
+        return;
+      }
+
+      this.room.removeOccupancy(this.interval);
+    }
+
+    this.room = room;
+
+    if (this.room != null) {
+      this.room.addOccupancy(this.interval, this.name.getValue());
+    }
+  }
+
   Meeting(MeetingName name, Capacity capacity, ZonedInterval interval) {
     this.name = name;
     this.interval = interval;
@@ -76,23 +98,6 @@ public class Meeting extends GeneratedLongIdEntity {
     }
 
     this.participants.add(person);
-  }
-
-  public void changeRoom(Room room) {
-
-    if (this.room != null) {
-      if (room != null && this.room.equals(room)) {
-        return;
-      }
-
-      this.room.removeOccupancy(this.interval);
-    }
-
-    this.room = room;
-
-    if (this.room != null) {
-      this.room.addOccupancy(this.interval, this.name.getValue());
-    }
   }
 
 }

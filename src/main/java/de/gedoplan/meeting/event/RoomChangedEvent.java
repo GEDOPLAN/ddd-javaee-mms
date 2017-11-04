@@ -12,6 +12,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Domain event for room changes of a meeting.
+ * 
+ * @author dw
+ */
 @Embeddable
 @Access(AccessType.FIELD)
 @Getter

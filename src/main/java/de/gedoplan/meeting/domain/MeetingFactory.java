@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+/**
+ * Factory for {@link Meeting}.
+ *
+ * @author dw
+ */
 @ApplicationScoped
 public class MeetingFactory {
 

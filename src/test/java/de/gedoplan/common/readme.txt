@@ -1,0 +1,1 @@
+(Smoke) Tests for the common package/component.

@@ -15,6 +15,13 @@ import javax.transaction.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * Test data creator.
+ *
+ * This is just for conveniance and easy execution of the demo application in a Java EE server.
+ *
+ * @author dw
+ */
 @ApplicationScoped
 public class InitDummyDataService implements Serializable {
   @Inject

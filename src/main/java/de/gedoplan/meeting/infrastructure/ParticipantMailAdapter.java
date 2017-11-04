@@ -9,6 +9,11 @@ import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 
+/**
+ * Adapter for sending email announcing meeting room changes.
+ *
+ * @author dw
+ */
 @ApplicationScoped
 public class ParticipantMailAdapter {
 

@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
  *
  * This interceptor controls transactions as entity manager local transactions.
  * This works in combination with {@link TestEntityManagerProducer} only
- * because all injection poins must receive the same entity manager within the
+ * because all injection points must receive the same entity manager within the
  * same request (=thread).
  *
  * @author dw

@@ -7,6 +7,11 @@ import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 
+/**
+ * Demo request scoped service logging its life cycle.
+ *
+ * @author dw
+ */
 @RequestScoped
 public class RequestScopedService {
 

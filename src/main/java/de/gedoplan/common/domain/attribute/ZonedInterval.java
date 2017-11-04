@@ -16,6 +16,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Domain value for a timestamp interval.
+ *
+ * @author dw
+ */
 @Embeddable
 @Access(AccessType.FIELD)
 @Getter

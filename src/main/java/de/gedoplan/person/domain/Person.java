@@ -17,6 +17,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Domain entity for persons.
+ * 
+ * @author dw
+ */
 @Entity
 @Access(AccessType.FIELD)
 @Getter

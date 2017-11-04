@@ -13,6 +13,18 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
+/**
+ * Base class for CDI container based tests.
+ *
+ * A standalone container is started first.
+ * For each test the following things are done:
+ * - Start and stop of the request context,
+ * - resolve all injected fields in the test class object,
+ * - surround the test method with an active transaction.
+ *
+ * @author dw
+ *
+ */
 public abstract class TestBase {
 
   private static SeContainerInitializer seContainerInitializer;;

@@ -8,13 +8,19 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
+/**
+ * (JPA) Repository for {@link Room}.
+ *
+ * @author dw
+ */
 @ApplicationScoped
-@Transactional(rollbackOn = Exception.class)
+@Transactional(value = TxType.MANDATORY)
 public class RoomRepository extends JpaRepository<Long, Room> {
 
   public List<Room> findFree(ZonedInterval interval, Capacity capacity) {
-    // TODO: Die u. a. Query scheint günstiger, weird aber von EclipseLink abgelehnt
+    // TODO: Die u. a. Query scheint günstiger, wird aber von EclipseLink abgelehnt
     return this.entityManager.createQuery(
         "select r "
             + "from Room r "
